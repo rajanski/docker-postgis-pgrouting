@@ -1,5 +1,5 @@
 FROM ubuntu:12.04
-MAINTAINER Helmi <helmi@tuxuri.com>
+MAINTAINER daveism <daveism@gmail.com>
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get -y update

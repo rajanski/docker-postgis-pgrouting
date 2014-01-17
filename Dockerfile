@@ -22,7 +22,11 @@ RUN apt-get -y install postgresql-9.1-pgrouting
 
 RUN sed -i '/local   all             postgres                                peer/c\local   all             postgres                                trust' /etc/postgresql/9.1/main/pg_hba.conf
 RUN sed -i '/local   all             all                                     peer/c\local   all             all                                trust' /etc/postgresql/9.1/main/pg_hba.conf
-host    all             all             127.0.0.1/32            trust
+
+RUN sed -i '/host    all             all             127.0.0.1/32            md5/c\host    all             all             127.0.0.1/32            trust' /etc/postgresql/9.1/main/pg_hba.conf
+
+RUN sed -i '/host    all             all             ::1/128            md5/c\host    all             all             ::1/128            trust' /etc/postgresql/9.1/main/pg_hba.conf
+
 
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 

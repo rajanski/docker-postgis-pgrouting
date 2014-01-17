@@ -28,6 +28,8 @@ RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN more /etc/postgresql/9.1/main/postgresql.conf
 RUN more /etc/postgresql/9.1/main/pg_hba.conf
 
+EXPOSE 5432
+
 RUN service postgresql stop
 RUN service postgresql start 
 RUN createdb yonder_trail -U postgres -O postgres -p 5432 -h localhost

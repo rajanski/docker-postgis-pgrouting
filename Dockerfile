@@ -20,7 +20,7 @@ RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.1-pgrouting
 
-RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN sed -i '/ocal   all             postgres                                peer/c\local   all             postgres                                trust' /etc/postgresql/9.1/main/pg_hba.conf
 RUN echo "local   all             postgres                                trust" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN echo "port = 5432" >> /etc/postgresql/9.1/main/postgresql.conf

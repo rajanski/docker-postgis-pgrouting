@@ -2,10 +2,10 @@ FROM ubuntu:12.04
 MAINTAINER daveism <daveism@gmail.com>
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" > /etc/apt/sources.list
-RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" > /etc/apt/sources.list
-RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" > /etc/apt/sources.list
-RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" > /etc/apt/sources.list
+RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" >> /etc/apt/sources.list
+RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" >> /etc/apt/sources.list
+RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" >> /etc/apt/sources.list
 
 RUN apt-get -y update
 RUN apt-get -y install wget

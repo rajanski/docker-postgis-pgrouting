@@ -22,6 +22,7 @@ RUN apt-get -y install postgresql-9.1-pgrouting
 
 RUN sed -i 's/md5/trust/g' /etc/postgresql/9.1/main/pg_hba.conf
 RUN sed -i 's/peer/trust/g' /etc/postgresql/9.1/main/pg_hba.conf
+RUN echo 'host    all             postgres          0.0.0.0/0               trust' >> /etc/postgresql/9.1/main/pg_hba.conf
 
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 
@@ -32,7 +33,7 @@ EXPOSE 5432
 
 RUN service postgresql stop
 RUN service postgresql start 
-RUN createdb yonder_trail -U postgres -O postgres -p 5432 -h localhost
+RUN createdb yonder_trail -U postgres -O postgres -p 5432 -h 127.0.0.1
 RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension postgis;'
 RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension pgrouting;'
 RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension hstore;'

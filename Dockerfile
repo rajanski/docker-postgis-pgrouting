@@ -23,11 +23,11 @@ RUN apt-get -y install postgresql-9.1-pgrouting
 RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN service postgresql start && /bin/su postgres -c "createuser -d -s -r -l docker" && /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" && service postgresql stop
 
-RUN service postgresql start && /bin/su postgres -c "createdb yonder_trails -U postgres -O postgres"  && service postgresql stop
-RUN service postgresql start && /bin/su postgres -c "psql postgres -d yonder_trails -c \"create extension postgis;\""  && service postgresql stop
-RUN service postgresql start && /bin/su postgres -c "psql postgres -d yonder_trails -c \"create extension pgrouting;\""  && service postgresql stop
-RUN service postgresql start && /bin/su postgres -c "psql postgres -d yonder_trails -c \"create extension hstore;\""  && service postgresql stop
-RUN service postgresql start && /bin/su postgres -c "psql postgres -d yonder_trails -c 'create extension \"uuid-ossp\";'"  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "createdb routes -U postgres -O postgres"  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c \"create extension postgis;\""  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c \"create extension pgrouting;\""  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c \"create extension hstore;\""  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c 'create extension \"uuid-ossp\";'"  && service postgresql stop
 
 EXPOSE 5432
 

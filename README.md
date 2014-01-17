@@ -1,17 +1,17 @@
-# Dockerfile PostGIS 
+# Dockerfile PostGIS PGrouting
 
 ## Info
 
-This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 9.3 
+This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 9.1
 
 - expose port `5432`
-- initializes a database in `/var/lib/postgresql/9.3/main`
+- initializes a database in `/var/lib/postgresql/9.1/main`
 - superuser in the database: `docker/docker`
 
 
 ## Install
 
-- `docker build -t postgis:2.1 .` or `docker build -t postgis:2.1 github.com/helmi03/docker-postgis.git`
+- `docker build -t postgis:2.1 .` or `docker build -t postgis:2.1 github.com/daveism/docker-postgis-pgrouting`
 - `docker run -d postgis:2.1`
 
 
@@ -20,7 +20,7 @@ This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 
 To connect to database, use docker inspect CONTAINER and grep IPAddress, e.g.
 
 ```
-CONTAINER=$(sudo docker run -d -t helmi03/postgis)
+CONTAINER=$(sudo docker run -d -t daveism/docker-postgis-pgrouting)
 CONTAINER_IP=$(sudo docker inspect $CONTAINER | grep IPAddress | awk '{ print $2 }' | tr -d ',"')
 psql -h $CONTAINER_IP -p 5432 -U docker -W postgres
 ```

@@ -18,7 +18,7 @@ RUN apt-get -y install postgresql-9.1 postgresql-contrib-9.1 postgresql-9.1-post
 RUN apt-get -y install python-software-properties
 RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
-RUN apt-get install postgresql-9.1-pgrouting
+RUN apt-get -y install postgresql-9.1-pgrouting
 
 RUN echo "host    all             all             0.0.0.0/0               trust >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN service postgresql restart

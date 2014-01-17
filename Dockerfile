@@ -27,7 +27,7 @@ RUN service postgresql start && /bin/su postgres -c "createdb yonder_trail -U po
 RUN service postgresql start && /bin/su postgres -c "psql postgres -c \"create extension postgis;\""  && service postgresql stop
 RUN service postgresql start && /bin/su postgres -c "psql postgres -c \"create extension pgrouting;\""  && service postgresql stop
 RUN service postgresql start && /bin/su postgres -c "psql postgres -c \"create extension hstore;\""  && service postgresql stop
-RUN service postgresql start && /bin/su postgres -c "psql postgres -c 'create extension "uuid-ossp\";'"  && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "psql postgres -c 'create extension \"uuid-ossp\";'"  && service postgresql stop
 
 EXPOSE 5432
 

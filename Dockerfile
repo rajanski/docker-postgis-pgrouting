@@ -28,7 +28,7 @@ RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN more /etc/postgresql/9.1/main/postgresql.conf
 RUN more /etc/postgresql/9.1/main/pg_hba.conf
 RUN service postgresql restart
-RUN createdb yonder_trail -U postgres -O postgres
+RUN createdb yonder_trail -U postgres -O postgres -p 5432 
 RUN psql -p 5432 -U postgres -d yonder_trail -c 'create extension postgis;'
 RUN psql -p 5432 -U postgres -d yonder_trail -c 'create extension pgrouting;'
 RUN psql -p 5432 -U postgres -d yonder_trail -c 'create extension hstore;'

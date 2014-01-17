@@ -20,7 +20,9 @@ RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.1-pgrouting
 
-RUN echo "host    all             all             0.0.0.0/0               trust" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN echo "local   all             postgres                                trust" >> /etc/postgresql/9.1/main/pg_hba.conf
+
 RUN service postgresql restart
 RUN createdb yonder_trail -U postgres -O postgres
 RUN psql -U postgres -d yonder_trail -c 'create extension postgis;'

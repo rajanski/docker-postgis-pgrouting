@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DATADIR="/var/lib/postgresql/9.3/main"
-CONF="/etc/postgresql/9.3/main/postgresql.conf"
-POSTGRES="/usr/lib/postgresql/9.3/bin/postgres"
-INITDB="/usr/lib/postgresql/9.3/bin/initdb"
+DATADIR="/var/lib/postgresql/9.1/main"
+CONF="/etc/postgresql/9.1/main/postgresql.conf"
+POSTGRES="/usr/lib/postgresql/9.1/bin/postgres"
+INITDB="/usr/lib/postgresql/9.1/bin/initdb"
 
 # test if DATADIR is existent
 if [ ! -d $DATADIR ]; then

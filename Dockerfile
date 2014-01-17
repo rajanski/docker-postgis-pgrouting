@@ -20,31 +20,13 @@ RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.1-pgrouting
 
-RUN sed -i 's/md5/trust/g' /etc/postgresql/9.1/main/pg_hba.conf
-RUN sed -i 's/peer/trust/g' /etc/postgresql/9.1/main/pg_hba.conf
-RUN echo 'host    all             postgres          0.0.0.0/0               trust' >> /etc/postgresql/9.1/main/pg_hba.conf
-
-RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
-
-RUN more /etc/postgresql/9.1/main/postgresql.conf
-RUN more /etc/postgresql/9.1/main/pg_hba.conf
+RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN service postgresql start && /bin/su postgres -c "createuser -d -s -r -l docker" && /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" && service postgresql stop
 
 EXPOSE 5432
 
 RUN service postgresql stop
 RUN service postgresql start 
-RUN createdb yonder_trail -U postgres -O postgres -p 5432 -h 127.0.0.1
-RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension postgis;'
-RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension pgrouting;'
-RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension hstore;'
-RUN psql -p 5432 -h localhost  -U postgres -d yonder_trail -c 'create extension "uuid-ossp";'
-
-RUN sed -i 's/trust/md5/g' /etc/postgresql/9.1/main/pg_hba.conf
-
-
-RUN service postgresql stop
-RUN service postgresql start 
-
 
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh

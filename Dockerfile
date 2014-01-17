@@ -10,14 +10,11 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1 postgis
 
-
-
-
+RUN apt-get -y install libc6
 RUN apt-get -y install libc6-dev
 
 RUN wget http://http.us.debian.org/debian/pool/main/b/boost1.54/libboost-system1.54.0_1.54.0-4_i386.deb
 RUN  dpkg -i libboost-system1.54.0_1.54.0-4_i386.deb
-
 
 RUN wget http://http.us.debian.org/debian/pool/main/b/boost1.54/libboost-thread1.54.0_1.54.0-4_i386.deb
 RUN  dpkg -i libboost-thread1.54.0_1.54.0-4_i386.deb

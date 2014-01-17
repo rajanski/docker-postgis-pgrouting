@@ -22,6 +22,8 @@ RUN apt-get -y install postgresql-9.1-pgrouting
 
 RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN echo "local   all             postgres                                trust" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
+RUN echo "port = 5432" >> /etc/postgresql/9.1/main/postgresql.conf
 
 RUN service postgresql restart
 RUN createdb yonder_trail -U postgres -O postgres
@@ -31,16 +33,13 @@ RUN psql -U postgres -d yonder_trail -c 'create extension hstore;'
 RUN psql -U postgres -d yonder_trail -c 'create extension "uuid-ossp";'
 
 
-RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN service postgresql start 
 RUN /bin/su postgres -c "createuser -d -s -r -l docker" 
 RUN /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" 
+
 RUN service postgresql stop
-RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
-RUN echo "port = 5432" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN service postgresql start 
 
-EXPOSE 5432
 
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh

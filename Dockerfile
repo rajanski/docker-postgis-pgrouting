@@ -8,54 +8,12 @@ RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/ke
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" >> /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1 postgis
+RUN apt-get -y install postgresql-9.1 postgresql-contrib-9.1 postgresql-9.1-postgis-2 postgis
 
-
-
-RUN wget http://http.us.debian.org/debian/pool/main/g/gcc-4.8/gcc-4.8-base_4.8.2-14_i386.deb
-RUN dpkg -i gcc-4.8-base_4.8.2-14_i386.deb
- 
-
-RUN apt-get -y install libc6
-RUN apt-get -y install libc6-dev
-
-RUN wget http://http.us.debian.org/debian/pool/main/b/boost1.54/libboost-system1.54.0_1.54.0-4_i386.deb
-RUN  dpkg -i libboost-system1.54.0_1.54.0-4_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/b/boost1.54/libboost-thread1.54.0_1.54.0-4_i386.deb
-RUN  dpkg -i libboost-thread1.54.0_1.54.0-4_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/m/mesa/libglapi-mesa_9.2.2-1_i386.deb 
-RUN  dpkg -i libglapi-mesa_9.2.2-1_i386.deb 
-
-RUN wget http://http.us.debian.org/debian/pool/main/libx/libx11/libx11-xcb1_1.6.2-1_i386.deb
-RUN  dpkg -i libx11-xcb1_1.6.2-1_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/libx/libxcb/libxcb-dri2-0_1.10-2_i386.deb
-RUN  dpkg -i libxcb-dri2-0_1.10-2_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/libx/libxcb/libxcb-glx0_1.10-2_i386.deb
-RUN  dpkg -i libxcb-glx0_1.10-2_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/libx/libx11/libx11-6_1.6.2-1_i386.deb
-RUN dpkg -i libx11-6_1.6.2-1_i386.deb
-
-RUN wget  http://http.us.debian.org/debian/pool/main/libx/libxxf86vm/libxxf86vm1_1.1.3-1_i386.deb
-RUN  dpkg -i libxxf86vm1_1.1.3-1_i386.deb
-
-
-RUN wget http://http.us.debian.org/debian/pool/main/m/mesa/libgl1-mesa-glx_9.2.2-1_i386.deb
-RUN  dpkg -i libgl1-mesa-glx_9.2.2-1_i386.deb
-
-RUN wget http://http.us.debian.org/debian/pool/main/c/cgal/libcgal10_4.2-5+b2_i386.deb
-RUN  dpkg -i libcgal10_4.2-5+b2_i386.deb
-
-
-
-RUN wget http://http.us.debian.org/debian/pool/main/p/pgrouting/postgresql-9.3-pgrouting_2.0.0-2_i386.deb
-RUN  dpkg -i postgresql-9.3-pgrouting_2.0.0-2_i386.deb
-
-
+RUN apt-get -y install python-software-properties
+RUN add-apt-repository -y  ppa:georepublic/pgrouting[-unstable]
+RUN apt-get -y  update
+RUN apt-get install postgresql-9.1-pgrouting
 
 RUN echo "host    all             all             0.0.0.0/0               trust >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN service postgresql restart

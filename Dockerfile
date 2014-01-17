@@ -11,7 +11,7 @@ RUN apt-get -y upgrade
 RUN apt-get -y install postgresql-9.1 postgresql-contrib-9.1 postgresql-9.1-postgis-2 postgis
 
 RUN apt-get -y install python-software-properties
-RUN add-apt-repository -y  ppa:georepublic/pgrouting[-unstable]
+RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
 RUN apt-get install postgresql-9.1-pgrouting
 

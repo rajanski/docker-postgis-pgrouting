@@ -28,7 +28,7 @@ RUN echo "local   all             all                                     trust"
 
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN echo "port = 5432" >> /etc/postgresql/9.1/main/postgresql.conf
-
+RUN more /etc/postgresql/9.1/main/pg_hba.conf
 RUN service postgresql restart
 RUN createdb yonder_trail -U postgres -O postgres
 RUN psql -U postgres -d yonder_trail -c 'create extension postgis;'

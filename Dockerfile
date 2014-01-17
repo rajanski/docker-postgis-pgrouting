@@ -15,8 +15,6 @@ RUN apt-get -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-post
 RUN wget http://http.us.debian.org/debian/pool/main/g/gcc-4.8/gcc-4.8-base_4.8.2-14_i386.deb
 RUN dpkg -i gcc-4.8-base_4.8.2-14_i386.deb
  
- RUN wget http://http.us.debian.org/debian/pool/main/g/gcc-4.8/libgcc1_4.8.2-14_i386.deb
- RUN dpkg -i libgcc1_4.8.2-14_i386.deb
  
 
 RUN apt-get -y install libc6

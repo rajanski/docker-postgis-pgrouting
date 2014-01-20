@@ -11,6 +11,8 @@ if [ ! -d $DATADIR ]; then
   mkdir -p $DATADIR
 fi
 
+chown -R postgres.postgres $DATADIR
+
 # test if DATADIR has content
 if [ ! "$(ls -A $DATADIR)" ]; then
   echo "Initializing Postgres Database at $DATADIR"

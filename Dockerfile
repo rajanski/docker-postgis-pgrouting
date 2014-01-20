@@ -20,8 +20,9 @@ RUN add-apt-repository -y ppa:georepublic/pgrouting-unstable
 RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.1-pgrouting
 
+RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.1/main/pg_hba.conf
-RUN service postgresql start && /bin/su postgres -c "createuser -d -s -r -l docker" && /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" && service postgresql stop
+RUN service postgresql start && /bin/su postgres -c "createuser -d -s -r -l docker" && /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\" && psql postgres -c \"CREATE DATABASE docker\" && psql postgres -c \"GRANT ALL ON DATABASE docker to docker\"" && service postgresql stop
 
 RUN service postgresql start && /bin/su postgres -c "createdb routes -U postgres -O postgres"  && service postgresql stop
 RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c \"create extension postgis;\""  && service postgresql stop

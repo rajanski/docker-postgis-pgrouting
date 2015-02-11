@@ -1,16 +1,16 @@
-FROM ubuntu:12.04
-MAINTAINER daveism <daveism@gmail.com>
+FROM ubuntu:14.04
+MAINTAINER rajanski <raliski@gmail.com>
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse" >> /etc/apt/sources.list
-RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty multiverse" >> /etc/apt/sources.list
+RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates multiverse" >> /etc/apt/sources.list
+RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates multiverse" >> /etc/apt/sources.list
 
 RUN apt-get -y update
 RUN apt-get -y install wget sed
 RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" >> /etc/apt/sources.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" >> /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1 postgis

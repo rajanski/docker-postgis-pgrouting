@@ -25,4 +25,4 @@ trap "echo \"Sending SIGTERM to postgres\"; killall -s SIGTERM postgres" SIGTERM
 
 su postgres sh -c "$POSTGRES -D $DATADIR -c config_file=$CONF" &
 
-#wait $!
+wait $!

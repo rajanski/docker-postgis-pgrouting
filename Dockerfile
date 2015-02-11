@@ -21,6 +21,7 @@ RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.3-pgrouting pgrouting-workshop osm2pgrouting
 
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.3/main/postgresql.conf
+RUN sed -i 's/5432/5439/g' /etc/postgresql/9.3/main/postgresql.conf
 RUN echo "host    all             all             0.0.0.0/0               md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN service postgresql start && /bin/su postgres -c "createuser -d -s -r -l docker" && /bin/su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\" && psql postgres -c \"CREATE DATABASE docker\" && psql postgres -c \"GRANT ALL ON DATABASE docker to docker\"" && service postgresql stop
 

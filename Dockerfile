@@ -15,8 +15,8 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1 postgis
 
-RUN apt-get -y install python-software-properties
-RUN /usr/bin/add-apt-repository -y ppa:georepublic/pgrouting
+RUN apt-get -y install python-software-properties software-properties-common
+RUN add-apt-repository -y ppa:georepublic/pgrouting
 RUN apt-get -y  update
 RUN apt-get -y install postgresql-9.3-pgrouting pgrouting-workshop osm2pgrouting
 

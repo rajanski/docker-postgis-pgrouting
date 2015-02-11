@@ -16,6 +16,6 @@ su postgres -c "createdb routes -U postgres -O postgres"
 su postgres -c "psql postgres -d routes -c \"create extension postgis;\"" 
 su postgres -c "psql postgres -d routes -c \"create extension pgrouting;\""
 su postgres -c "psql postgres -d routes -c \"create extension hstore;\""
-su postgres -c "psql postgres -d routes -c 'create extension \"uuid-ossp\";'"
+su postgres -c "psql postgres -d routes -c \"create extension uuid-ossp;\""
 
 service postgresql stop

@@ -2,17 +2,16 @@
 
 ## Info
 
-This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 9.1
+This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 9.4
 
-- expose port `5432`
-- initializes a database in `/var/lib/postgresql/9.1/main`
+- expose port `5439`
+- initializes a database in `/var/lib/postgresql/9.4/main`
 - superuser in the database: `docker/docker`
 
 
 ## Install
 
-- `docker build -t postgis:2.1 .` or `docker build -t postgis:2.1 github.com/daveism/docker-postgis-pgrouting`
-- `docker run -d postgis:2.1`
+- `docker build -t pgrouting https://github.com/rajanski/docker-postgis-pgrouting
 
 
 ## Usage
@@ -20,9 +19,9 @@ This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 
 To connect to database, use docker inspect CONTAINER and grep IPAddress, e.g.
 
 ```
-CONTAINER=$(sudo docker run -d -t daveism/docker-postgis-pgrouting)
+CONTAINER=$(sudo docker run -d -t pgrouting)
 CONTAINER_IP=$(sudo docker inspect $CONTAINER | grep IPAddress | awk '{ print $2 }' | tr -d ',"')
-psql -h $CONTAINER_IP -p 5432 -U docker -W postgres
+psql -h $CONTAINER_IP -p 5439 -U docker -W postgres
 ```
 
 
@@ -30,16 +29,16 @@ psql -h $CONTAINER_IP -p 5432 -U docker -W postgres
 
 You can mount the database directory as a volume to persist your data:
 
-`docker run -d -v $HOME/postgres_data:/var/lib/postgresql postgis:2.1`
+`docker run -d -v $HOME/PG_DATA:/var/lib/postgresql pgrouting`
 
-Makes sure first need to create source folder: `mkdir -p ~HOME/postgres_data`.
+Makes sure first need to create source folder: `mkdir -p ~HOME/PG_DATA`.
 
 If you copy existing postgresql data, you need to set permission properly (chown/chgrp)
 
 
 ## Meta
 
-Build width docker version `0.7.0`
+Build width docker version `1.x`
 
 
 ## References
@@ -47,3 +46,4 @@ Build width docker version `0.7.0`
 - Docker trusted build: [helmi03/docker-postgis](https://index.docker.io/u/helmi03/docker-postgis/)
 - [stigi/dockerfile-postgresql](https://github.com/stigi/dockerfile-postgresql)
 - [Docker PostgreSQL Service](http://docs.docker.io/en/latest/examples/postgresql_service/)
+- [Dockerizing a PostgreSQL Service](http://docs.docker.com/examples/postgresql_service/)

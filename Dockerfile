@@ -8,7 +8,7 @@ RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates mu
 RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse" >> /etc/apt/sources.list
 
 RUN apt-get -y update
-RUN apt-get -y install wget
+RUN apt-get -y install wget sed
 RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" >> /etc/apt/sources.list
 RUN apt-get -y update

@@ -11,7 +11,7 @@ RUN echo "deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates mul
 RUN echo "deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates multiverse" >> /etc/apt/sources.list
 
 RUN apt-get -y update
-RUN apt-get -y install wget sed
+RUN apt-get -y install wget sed dialog readline-common
 RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" >> /etc/apt/sources.list
 RUN apt-get -y update

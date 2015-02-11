@@ -32,6 +32,7 @@ RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c 
 RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c 'create extension \"uuid-ossp\";'"  && service postgresql stop
 
 EXPOSE 5439
+EXPOSE 22
 
 RUN service postgresql stop
 RUN service postgresql start 

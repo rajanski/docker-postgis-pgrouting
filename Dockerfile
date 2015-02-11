@@ -36,4 +36,8 @@ RUN service postgresql start
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh
 
-CMD ["/start.sh"]
+ADD setup.sh /setup.sh
+RUN chmod 0755 /setup.sh
+RUN /setup.sh
+
+CMD /start.sh

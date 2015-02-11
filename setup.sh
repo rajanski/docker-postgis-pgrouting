@@ -5,7 +5,7 @@
 
 service postgresql start 
 su postgres -c "createuser -d -s -r -l docker" 
-su postgres -c "psql postgres -c \"ALTER USER docker WITH PASSWORD 'docker'\" 
+su postgres -c "psql postgres -c \"ALTER USER docker WITH PASSWORD 'docker'\""
 
 su postgres -c "createuser -d -s -r -l docker" 
 su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" 

@@ -8,7 +8,7 @@ su postgres -c "createuser -d -s -r -l docker"
 su postgres -c "psql postgres -c \"ALTER USER docker WITH PASSWORD 'docker'\""
 
 su postgres -c "createuser -d -s -r -l docker" 
-su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" 
+#su postgres -c "psql postgres -c \"ALTER USER docker WITH ENCRYPTED PASSWORD 'docker'\"" 
 su postgres -c "psql postgres -c \"CREATE DATABASE docker\"" 
 su postgres -c "psql postgres -c \"GRANT ALL ON DATABASE docker to docker\""
 

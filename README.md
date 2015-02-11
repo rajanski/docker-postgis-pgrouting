@@ -29,7 +29,7 @@ If you copy existing postgresql data, you need to set permission properly (chown
 To connect to database, use docker inspect CONTAINER and grep IPAddress, e.g.
 
 ```
-DC=$(docker run -p 5439 -d -v /home/docker/PG_DATA:/var/lib/postgresql -t pgrouting /start.sh)
+DC=$(docker run -p 5439:5439 -d -v /home/docker/PG_DATA:/var/lib/postgresql -t pgrouting /start.sh)
 DC_IP=$(sudo docker inspect $CONTAINER | grep IPAddress | awk '{ print $2 }' | tr -d ',"')
 psql -h $DC_IP -p 5439 -U postgres -W 
 ```

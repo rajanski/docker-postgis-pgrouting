@@ -14,18 +14,7 @@ This Dockerfile creates a container running PostGIS 2.1/PGRouting in PostgreSQL 
 - `docker build -t pgrouting https://github.com/rajanski/docker-postgis-pgrouting
 
 
-## Usage
-
-To connect to database, use docker inspect CONTAINER and grep IPAddress, e.g.
-
-```
-CONTAINER=$(sudo docker run -d -t pgrouting)
-CONTAINER_IP=$(sudo docker inspect $CONTAINER | grep IPAddress | awk '{ print $2 }' | tr -d ',"')
-psql -h $CONTAINER_IP -p 5439 -U docker -W postgres
-```
-
-
-## Persistance
+## Data Persistence
 
 You can mount the database directory as a volume to persist your data:
 
@@ -35,10 +24,23 @@ Makes sure first need to create source folder: `mkdir -p ~HOME/PG_DATA`.
 
 If you copy existing postgresql data, you need to set permission properly (chown/chgrp)
 
+## Running / Usage
+
+To connect to database, use docker inspect CONTAINER and grep IPAddress, e.g.
+
+```
+DC=$(docker run -d -v /home/docker/PG_DATA:/var/lib/postgresql -t pgrouting /start.sh)
+DC_IP=$(sudo docker inspect $CONTAINER | grep IPAddress | awk '{ print $2 }' | tr -d ',"')
+psql -h $DC_IP -p 5439 -U postgres -W 
+```
+
+
+
+
 
 ## Meta
 
-Build width docker version `1.x`
+Built width docker version `1.x`
 
 
 ## References

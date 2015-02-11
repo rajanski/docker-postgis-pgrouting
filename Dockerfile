@@ -31,7 +31,7 @@ RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c 
 RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c \"create extension hstore;\""  && service postgresql stop
 RUN service postgresql start && /bin/su postgres -c "psql postgres -d routes -c 'create extension \"uuid-ossp\";'"  && service postgresql stop
 
-EXPOSE 5432
+EXPOSE 5439
 
 RUN service postgresql stop
 RUN service postgresql start 
